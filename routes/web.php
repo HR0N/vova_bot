@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\tgBotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('/bot_hook', [tgBotController::class, 'bot_hook']);
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
