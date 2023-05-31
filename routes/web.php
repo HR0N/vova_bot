@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\tgBotController;
+use App\Http\Controllers\TgBotController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/bot_hook', [tgBotController::class, 'bot_hook']);
+Route::get('/adminpanel', function (){return view('adminpanel/aPanel');});
+Route::post('/bot_hook', [TgBotController::class, 'bot_hook']);
+
+Route::get('/send', [TgBotController::class, 'store']);
 
 Auth::routes();
 

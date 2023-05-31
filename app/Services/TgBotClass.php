@@ -23,8 +23,8 @@ class TgBotClass {
     public function __construct()
     {
         /*  tg bot sdk get started - https://telegram-bot-sdk.com/docs/getting-started/installation */
-        $this->bot = Telegram::bot('weatherBot');
-        $this->bot_id = '5904109257';   // відстежуваний id. для того, щоб бот розумів що це його додали або видалили з групи\каналу
+        $this->bot = Telegram::bot('olx_bot');
+        $this->bot_id = env('TELEGRAM_BOT_ID');   // відстежуваний id. для того, щоб бот розумів що це його додали або видалили з групи\каналу
     }
 
 
@@ -43,7 +43,7 @@ class TgBotClass {
             $data = [];
             $data['group_title'] = $updates->chat->title;
             $data['group_id'] = $updates->chat->id;
-            TgGroup::create($data);
+            TgGroups::create($data);
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ class TgBotClass {
     public function bot_kick($updates){
         if(isset($updates->left_chat_member->id) && $updates->left_chat_member->id == $this->bot_id){
             $chat_id = $updates->chat->id;
-            TgGroup::where('group_id', $chat_id)->delete();
+            TgGroups::where('group_id', $chat_id)->delete();
             return true;
         }
         return false;

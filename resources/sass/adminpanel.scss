@@ -1,0 +1,102 @@
+.apanel{
+    .header{
+        display: flex;
+        justify-content: space-between;
+
+        gap: 12px;
+        padding: 12px;
+        border-bottom: 1px solid lightgrey;
+
+        .welcome{
+            display: flex;
+            justify-content: flex-start;
+        }
+        .links{
+            display: flex;
+            gap: 12px;
+        }
+        a{
+            text-decoration: none;
+            color: var(--bs-black-rgb);
+            padding: 1px 6px;
+            border: 1px solid lightgrey;
+            border-radius: .2rem;
+            &:hover{
+                background-color: whitesmoke;
+                box-shadow: 1px 1px 3px lightgrey;
+            }
+        }
+    }
+
+    main{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        gap: 30px;
+        width: 80%;
+        min-width: 310px;
+        margin: 50px auto;
+
+        .choose, .filters{
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 20px;
+            width: 100%;
+            padding: 6px;
+            background-color: whitesmoke;
+            border-radius: .2rem;
+            box-shadow: 1px 1px 5px #cdcdcd;
+            .title{
+                width: 100%;
+                font-size: 2em;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+        }
+        .choose{
+            .title{
+                text-align: center;
+            }
+            .choose__group, .choose__category{
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+            .choose__group{}
+            .choose__category{}
+        }
+
+        .filters{
+            .title{
+            }
+            form{
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                .section{
+                    flex: 1;
+                    max-width: 310px;
+                    min-width: 260px;
+                    label{
+                        position: relative;
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 6px;
+                        .l_title{
+                            width: 100%;
+                        }
+                        input{
+                            flex: 1;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+}
