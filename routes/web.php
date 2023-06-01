@@ -22,6 +22,7 @@ Route::get('/adminpanel', function (){return view('adminpanel/aPanel');});
 Route::post('/bot_hook', [TgBotController::class, 'bot_hook']);
 
 Route::get('/send', [TgBotController::class, 'store']);
+Route::get('/test', [TgBotController::class, 'test']);
 
 Auth::routes();
 

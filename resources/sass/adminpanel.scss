@@ -43,7 +43,6 @@
             display: flex;
             flex-wrap: wrap;
 
-            gap: 20px;
             width: 100%;
             padding: 6px;
             background-color: whitesmoke;
@@ -64,7 +63,8 @@
             .choose__group, .choose__category{
                 display: flex;
                 flex-direction: column;
-                flex: 1;
+                padding: 10px;
+                width: calc(100% / 3);
             }
             .choose__group{}
             .choose__category{}
@@ -76,11 +76,14 @@
             form{
                 display: flex;
                 flex-wrap: wrap;
-                gap: 20px;
+                //gap: 20px;
+                padding: 6px;
                 .section{
-                    flex: 1;
-                    max-width: 310px;
-                    min-width: 260px;
+                    //flex: 1;
+                    //max-width: 310px;
+                    //min-width: 260px;
+                    padding: 10px;
+                    width: 25%;
                     label{
                         position: relative;
                         display: flex;
@@ -99,4 +102,26 @@
         }
     }
 
+}
+
+
+@media screen and (max-width: 1025px) {
+}
+@media screen and (max-width: 769px) {
+    .apanel main .filters form .section{
+        width: calc(100% / 3);
+    }
+}
+@media screen and (max-width: 426px) {
+    .apanel main .choose .choose__group, .apanel main .choose .choose__category {
+        padding: 10px 5px;
+        width: 100%;
+    }
+    .apanel main .filters form .section{
+        padding: 10px 5px;
+        width:100%;
+    }
+
+}
+@media screen and (max-width: 321px) {
 }

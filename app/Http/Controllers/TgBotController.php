@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ParsingClass;
 use App\Services\TgBotClass;
 use Illuminate\Http\Request;
 use Telegram\Bot\Exceptions\TelegramSDKException;
@@ -74,5 +75,14 @@ class TgBotController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function test()
+    {
+        $pq = new ParsingClass();
+        $pq->apartment_rent();
     }
 }
