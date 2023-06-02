@@ -15,8 +15,16 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <!-- Scripts -->
+    {{--    jQuery (not slim, because CRUD need) --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    {{--    Pieces of shit...  --}}
+    <?php if($_SERVER['SERVER_NAME'] === '127.0.0.1'): ?>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <?php else: ?>
+    <link rel="stylesheet" href="{{asset('./public/build/assets/app-1e482a66.css')}}">
+    <script src="{{asset('./public/build/assets/app-9d60067e.js')}}"></script>
+    <?php endif; ?>
 
 </head>
 <body class="apanel">
