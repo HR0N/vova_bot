@@ -9,7 +9,11 @@ export class FatherClass {
 
     #fetch_field(data, field){
         field && field.map((k, v)=>{
-            data[$(v).attr('name')] = $(v).val();
+            if($(v).attr('type') !== 'checkbox' && $(v).attr('type') !== 'radio'){
+                data[$(v).attr('name')] = $(v).val();
+            }else{
+                data[$(v).attr('name')] = $(v).prop('checked');
+            }
         });
     }
 

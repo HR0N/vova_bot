@@ -32,7 +32,6 @@ class ParsingClass {
     public function apartment_rent(){
         $city = 'kiev/';
         $district = '&search[district_id]=';
-        $district_1 = '&search[district_id]=';
         $price1 = '&search[filter_float_price:from]=';
         $price2 = '&search[filter_float_price:to]=';
         $floor1 = '&search[filter_float_floor:from]=';
@@ -48,7 +47,9 @@ class ParsingClass {
         $rooms3 = '&search[filter_enum_number_of_rooms_string][2]=trehkomnatnye';
         $rooms4 = '&search[filter_enum_number_of_rooms_string][3]=chetyrehkomnatnye';
         $rooms5 = '&search[filter_enum_number_of_rooms_string][4]=pyatikomnatnye';
-        $url = 'https://www.olx.ua/d/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/?';
+        $url_apartment_rent = "https://www.olx.ua/d/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/$city?";
+        $url_room_rent = "https://www.olx.ua/d/uk/nedvizhimost/komnaty/dolgosrochnaya-arenda-komnat/$city?";
+        $url = $url_apartment_rent;
         $sSelector = 'div.listing-grid-container';
         echo file_get_contents($url);
         /*echo '<pre>';

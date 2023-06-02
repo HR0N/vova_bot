@@ -40,7 +40,6 @@
 
         .choose, .filters{
             position: relative;
-            display: flex;
             flex-wrap: wrap;
 
             width: 100%;
@@ -57,6 +56,7 @@
 
         }
         .choose{
+            display: flex;
             .title{
                 text-align: center;
             }
@@ -71,6 +71,7 @@
         }
 
         .filters{
+            display: none;
             .title{
             }
             form{
@@ -97,6 +98,32 @@
                         }
                     }
                 }
+                .section__apartment_rooms, .section__rooms_rooms{
+                    label{
+                        position: relative;
+                        gap: 0;
+                        label{
+                            display: flex;
+                            padding: 3px;
+                            gap: 4px;
+                            width: calc(100% / 3);
+                            input{
+                                flex: none;
+                                width: 16px;
+                                height: 16px;
+                                transform: translateY(2px);
+                            }
+                        }
+                    }
+                }
+                .buttons{
+                    display: flex;
+                    justify-content: flex-end;
+
+                    width: 100%;
+                    margin-top: 30px;
+                    padding: 10px;
+                }
             }
 
         }
@@ -106,10 +133,13 @@
 
 
 @media screen and (max-width: 1025px) {
+    .apanel main .filters form .section{
+        width: calc(100% / 3);
+    }
 }
 @media screen and (max-width: 769px) {
     .apanel main .filters form .section{
-        width: calc(100% / 3);
+        width: calc(100% / 2);
     }
 }
 @media screen and (max-width: 426px) {
@@ -124,4 +154,9 @@
 
 }
 @media screen and (max-width: 321px) {
+}
+
+
+.flex{
+    display: flex !important;
 }

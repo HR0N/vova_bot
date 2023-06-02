@@ -53,110 +53,160 @@
     </div>
     @endif
 
-        @if(Auth()->user()->role == 'admin')
-            <main>
+        @auth
+            @if(Auth()->user()->role == 'admin')
+                <main>
 
-                <div class="choose">
-                    <div class="title">Оберіть групу та категорію парсингу</div>
-                    <div class="choose__group">
-                        <label for="group">Виберіть групу</label>
-                        <select  class="form-control" name="group" id="group">
-                            <option selected disabled></option>
-                            <option value="1">tmp 1</option>
-                            <option value="2">tmp 2</option>
-                        </select>
-                    </div>
-                    <div class="choose__category">
-                        <div>
-                            <label for="category">Виберіть категорію</label>
-                            <select  class="form-control" name="category" id="category">
-                                <option value="0">Оренда квартир</option>
-                                <option value="1">Оренда кімнат</option>
+                    <div class="choose">
+                        <div class="title">Виберіть групу та категорію парсингу</div>
+                        <div class="choose__group">
+                            <label for="group">Виберіть групу</label>
+                            <select class="form-control" name="group" id="group">
+                                <option selected disabled></option>
+                                <option value="1">tmp 1</option>
+                                <option value="2">tmp 2</option>
                             </select>
                         </div>
+                        <div class="choose__category">
+                            <div>
+                                <label for="category">Виберіть категорію</label>
+                                <select class="form-control" name="category" id="category">
+                                    <option value="0">Оренда квартир</option>
+                                    <option value="1">Оренда кімнат</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="filters apartment">
-                    <div class="title">Фільтри з оренди квартир</div>
-                    <form class="form-control" action="#">
+                    <div class="filters apartment">
+                        <div class="title">Фільтри з оренди квартир</div>
+                        <form class="form-control" action="#">
 
-                        <div class="section">
-                            <label><span class="l_title">Город</span>
-                                <input class="form-control" type="text" name="apartment__city">
-                            </label>
-                        </div>
+                            <div class="section">
+                                <label><span class="l_title">Город</span>
+                                    <select class="form-control" name="apartment__city">
+{{--                                        <option selected disabled></option>--}}
+                                        <option value="Warszawa">Warszawa</option>
+                                    </select>
+                                </label>
+                            </div>
 
-                        <div class="section">
-                            <label><span class="l_title">Район</span>
-                                <input class="form-control" type="text" name="apartment__district">
-                            </label>
-                        </div>
+                            <div class="section">
+                                <label><span class="l_title">Район</span>
+                                    <select class="form-control" name="apartment__district">
+                                        <option value="Bemowo">Bemowo</option>
+                                        <option value="Białołęka">Białołęka</option>
+                                        <option value="Bielany">Bielany</option>
+                                        <option value="Mokotów">Mokotów</option>
+                                        <option value="Ochota">Ochota</option>
+                                        <option value="Praga-Południe">Praga-Południe</option>
+                                        <option value="Praga-Północ">Praga-Północ</option>
+                                        <option value="Rembertów">Rembertów</option>
+                                        <option value="Targówek">Targówek</option>
+                                        <option value="Ursus">Ursus</option>
+                                        <option value="Ursynów">Ursynów</option>
+                                        <option value="Wola">Wola</option>
+                                        <option value="Wesoła">Wesoła</option>
+                                        <option value="Włochy">Włochy</option>
+                                        <option value="Wilanów">Wilanów</option>
+                                        <option value="Wawer">Wawer</option>
+                                        <option value="Śródmieście">Śródmieście</option>
+                                        <option value="Żoliborz">Żoliborz</option>
+                                    </select>
+                                </label>
+                            </div>
 
-                        <div class="section">
-                            <label><span class="l_title">Кількість кімнат</span>
-                                <select class="form-control" name="apartment__room_count">
-                                    <option value="0">Всі оголошення</option>
-                                    <option value="1">1 кімната</option>
-                                    <option value="2">2 кімнати</option>
-                                    <option value="3">3 кімнати</option>
-                                    <option value="4">4 кімнати</option>
-                                    <option value="5">5 кімнат</option>
-                                </select>
-                            </label>
-                        </div>
+                            <div class="section">
+                                <label><span class="l_title">Ціна</span>
+                                    <input class="form-control" name="apartment__price_from" placeholder="Від:"/>
+                                    <input class="form-control" name="apartment__price_to" placeholder="до:"/>
+                                </label>
+                            </div>
 
-                        <div class="section">
-                            <label><span class="l_title">Ціна</span>
-                                <input class="form-control" name="apartment__price_from" placeholder="Від:"/>
-                                <input class="form-control" name="apartment__price_to" placeholder="до:"/>
-                            </label>
-                        </div>
+                            <div class="section section__apartment_rooms">
+                                <label><span class="l_title">Кількість кімнат</span>
+                                    <label><input type="checkbox" name="all" checked> Всі</label>
+                                    <label><input type="checkbox" name="one"> Одна</label>
+                                    <label><input type="checkbox" name="two"> Дві</label>
+                                    <label><input type="checkbox" name="three"> Три</label>
+                                    <label><input type="checkbox" name="four"> Чотири</label>
+                                    <label><input type="checkbox" name="five"> П'ять</label>
+                                </label>
+                            </div>
 
-                    </form>
-                </div>
+                            <div class="buttons">
+                                <div class="btn btn-outline-success submit">Зберегти</div>
+                            </div>
 
-                <div class="filters rooms">
-                    <div class="title">Фільтри з оренди кімнат</div>
-                    <form class="form-control" action="#">
+                        </form>
+                    </div>
 
-                        <div class="section">
-                            <label><span class="l_title">Город</span>
-                                <input class="form-control" type="text" name="rooms__city">
-                            </label>
-                        </div>
+                    <div class="filters rooms">
+                        <div class="title">Фільтри з оренди кімнат</div>
+                        <form class="form-control" action="#">
 
-                        <div class="section">
-                            <label><span class="l_title">Район</span>
-                                <input class="form-control" type="text" name="rooms__district">
-                            </label>
-                        </div>
+                            <div class="section">
+                                <label><span class="l_title">Город</span>
+                                    <select class="form-control" name="apartment__city">
+                                        {{--                                        <option selected disabled></option>--}}
+                                        <option value="Warszawa">Warszawa</option>
+                                    </select>
+                                </label>
+                            </div>
 
-                        <div class="section">
-                            <label><span class="l_title">Кількість кімнат</span>
-                                <select class="form-control" name="rooms__room_count">
-                                    <option value="0">Всі оголошення</option>
-                                    <option value="1">1 кімната</option>
-                                    <option value="2">2 кімнати</option>
-                                    <option value="3">3 кімнати</option>
-                                    <option value="4">4 кімнати</option>
-                                    <option value="5">5 кімнат</option>
-                                </select>
-                            </label>
-                        </div>
+                            <div class="section">
+                                <label><span class="l_title">Район</span>
+                                    <select class="form-control" name="apartment__district">
+                                        <option value="Bemowo">Bemowo</option>
+                                        <option value="Białołęka">Białołęka</option>
+                                        <option value="Bielany">Bielany</option>
+                                        <option value="Mokotów">Mokotów</option>
+                                        <option value="Ochota">Ochota</option>
+                                        <option value="Praga-Południe">Praga-Południe</option>
+                                        <option value="Praga-Północ">Praga-Północ</option>
+                                        <option value="Rembertów">Rembertów</option>
+                                        <option value="Targówek">Targówek</option>
+                                        <option value="Ursus">Ursus</option>
+                                        <option value="Ursynów">Ursynów</option>
+                                        <option value="Wola">Wola</option>
+                                        <option value="Wesoła">Wesoła</option>
+                                        <option value="Włochy">Włochy</option>
+                                        <option value="Wilanów">Wilanów</option>
+                                        <option value="Wawer">Wawer</option>
+                                        <option value="Śródmieście">Śródmieście</option>
+                                        <option value="Żoliborz">Żoliborz</option>
+                                    </select>
+                                </label>
+                            </div>
 
-                        <div class="section">
-                            <label><span class="l_title">Ціна</span>
-                                <input class="form-control" name="rooms__price_from" placeholder="Від:"/>
-                                <input class="form-control" name="rooms__price_to" placeholder="до:"/>
-                            </label>
-                        </div>
+                            <div class="section">
+                                <label><span class="l_title">Ціна</span>
+                                    <input class="form-control" name="rooms__price_from" placeholder="Від:"/>
+                                    <input class="form-control" name="rooms__price_to" placeholder="до:"/>
+                                </label>
+                            </div>
 
-                    </form>
-                </div>
+                            {{--<div class="section section__rooms_rooms">
+                                <label><span class="l_title">Кількість кімнат</span>
+                                    <label><input type="checkbox" checked> Всі</label>
+                                    <label><input type="checkbox"> Одна</label>
+                                    <label><input type="checkbox"> Дві</label>
+                                    <label><input type="checkbox"> Три</label>
+                                    <label><input type="checkbox"> Чотири</label>
+                                    <label><input type="checkbox"> П'ять</label>
+                                </label>
+                            </div>--}}
 
-            </main>
-        @endif
+                            <div class="buttons">
+                                <div class="btn btn-outline-success submit">Зберегти</div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </main>
+            @endif
+        @endauth
 
 </div>
 </body>
