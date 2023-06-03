@@ -1,6 +1,11 @@
-export class FatherClass {
+export class FatherClass{
     constructor(elem) {
         this.el = $(elem);
+
+        $.ajaxSetup({
+            headers:
+                { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
     }
 
     find(sSelector){
@@ -29,4 +34,17 @@ export class FatherClass {
 
         return data;
     }
+
+    get(url, success = () => {}, error = () => {}){
+        $.get(url)
+            .done(response => success(response))
+            .fail(err => error(err));
+    }
+
+    post(url, success = () => {}, error = () => {}){
+        $.post(url)
+            .done(response => success(response))
+            .fail(err => error(err));
+    }
+
 }

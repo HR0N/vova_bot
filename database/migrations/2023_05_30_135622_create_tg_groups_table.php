@@ -15,10 +15,15 @@ return new class extends Migration
 
         Schema::create('tg_groups', function (Blueprint $table) {
             $table->id();
+            $table->string('rent_type')->default('apartment');
             $table->string('group_title');
             $table->string('group_id');
             $table->boolean('allow_messages')->default(true);
-            $table->string('city')->default('Kyiv');
+            $table->string('city')->default('Warszawa');
+            $table->string('district')->nullable();
+            $table->string('price')->nullable();
+            $table->string('rooms')->nullable();
+            $table->mediumText('request_url')->nullable();
             $table->timestamps();
         });
     }

@@ -1,0 +1,29 @@
+
+.header{
+    display: flex;
+    justify-content: space-around;
+
+    gap: 12px;
+    padding: 12px;
+    border-bottom: 1px solid lightgrey;
+
+    .welcome{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .links{
+        display: flex;
+        gap: 12px;
+    }
+    a{
+        text-decoration: none;
+        color: var(--bs-black-rgb);
+        padding: 1px 6px;
+        border: 1px solid lightgrey;
+        border-radius: .2rem;
+        &:hover{
+            background-color: whitesmoke;
+            box-shadow: 1px 1px 3px lightgrey;
+        }
+    }
+}

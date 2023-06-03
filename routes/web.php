@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TgBotController;
+use App\Http\Controllers\TgGroupsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,10 @@ Route::get('/', function () {
 });
 Route::get('/adminpanel', function (){return view('adminpanel/aPanel');});
 Route::post('/bot_hook', [TgBotController::class, 'bot_hook']);
+
+Route::get('/TgGroupsIndex', [TgGroupsController::class, 'index']);
+Route::post('/TgGroupsUpdate/{id}', [TgGroupsController::class, 'update']);
+
 
 Route::get('/send', [TgBotController::class, 'store']);
 Route::get('/test', [TgBotController::class, 'test']);

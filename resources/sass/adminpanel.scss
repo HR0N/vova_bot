@@ -1,7 +1,7 @@
 .apanel{
     .header{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
 
         gap: 12px;
         padding: 12px;
@@ -159,4 +159,8 @@
 
 .flex{
     display: flex !important;
+}
+
+.filters_hide{
+    display: none !important;
 }

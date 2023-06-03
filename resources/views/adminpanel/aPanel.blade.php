@@ -22,8 +22,8 @@
     <?php if($_SERVER['SERVER_NAME'] === '127.0.0.1'): ?>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <?php else: ?>
-    <link rel="stylesheet" href="{{asset('./public/build/assets/app-1e482a66.css')}}">
-    <script src="{{asset('./public/build/assets/app-9d60067e.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('./public/build/assets/app-6848dc19.css')}}">
+    <script src="{{asset('./public/build/assets/app-58c5dbe6.js')}}"></script>
     <?php endif; ?>
 
 </head>
@@ -69,24 +69,24 @@
                         <div class="title">Виберіть групу та категорію парсингу</div>
                         <div class="choose__group">
                             <label for="group">Виберіть групу</label>
-                            <select class="form-control" name="group" id="group">
+                            <select class="form-control" name="group" id="groups">
                                 <option selected disabled></option>
-                                <option value="1">tmp 1</option>
-                                <option value="2">tmp 2</option>
+                                {{--<option value="1">tmp 1</option>
+                                <option value="2">tmp 2</option>--}}
                             </select>
                         </div>
                         <div class="choose__category">
                             <div>
                                 <label for="category">Виберіть категорію</label>
                                 <select class="form-control" name="category" id="category">
-                                    <option value="0">Оренда квартир</option>
-                                    <option value="1">Оренда кімнат</option>
+                                    <option value="apartment">Оренда квартир</option>
+                                    <option value="rooms">Оренда кімнат</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <div class="filters apartment">
+                    <div class="filters apartment filters_hide">
                         <div class="title">Фільтри з оренди квартир</div>
                         <form class="form-control" action="#">
 
@@ -102,43 +102,43 @@
                             <div class="section">
                                 <label><span class="l_title">Район</span>
                                     <select class="form-control" name="apartment__district">
-                                        <option value="Bemowo">Bemowo</option>
-                                        <option value="Białołęka">Białołęka</option>
-                                        <option value="Bielany">Bielany</option>
-                                        <option value="Mokotów">Mokotów</option>
-                                        <option value="Ochota">Ochota</option>
-                                        <option value="Praga-Południe">Praga-Południe</option>
-                                        <option value="Praga-Północ">Praga-Północ</option>
-                                        <option value="Rembertów">Rembertów</option>
-                                        <option value="Targówek">Targówek</option>
-                                        <option value="Ursus">Ursus</option>
-                                        <option value="Ursynów">Ursynów</option>
-                                        <option value="Wola">Wola</option>
-                                        <option value="Wesoła">Wesoła</option>
-                                        <option value="Włochy">Włochy</option>
-                                        <option value="Wilanów">Wilanów</option>
-                                        <option value="Wawer">Wawer</option>
-                                        <option value="Śródmieście">Śródmieście</option>
-                                        <option value="Żoliborz">Żoliborz</option>
+                                        <option value="367">Bemowo</option>
+                                        <option value="365">Białołęka</option>
+                                        <option value="369">Bielany</option>
+                                        <option value="353">Mokotów</option>
+                                        <option value="355">Ochota</option>
+                                        <option value="381">Praga-Południe</option>
+                                        <option value="379">Praga-Północ</option>
+                                        <option value="361">Rembertów</option>
+                                        <option value="377">Targówek</option>
+                                        <option value="371">Ursus</option>
+                                        <option value="373">Ursynów</option>
+                                        <option value="359">Wola</option>
+                                        <option value="533">Wesoła</option>
+                                        <option value="357">Włochy</option>
+                                        <option value="375">Wilanów</option>
+                                        <option value="383">Wawer</option>
+                                        <option value="351">Śródmieście</option>
+                                        <option value="363">Żoliborz</option>
                                     </select>
                                 </label>
                             </div>
 
                             <div class="section">
                                 <label><span class="l_title">Ціна</span>
-                                    <input class="form-control" name="apartment__price_from" placeholder="Від:"/>
-                                    <input class="form-control" name="apartment__price_to" placeholder="до:"/>
+                                    <input class="form-control" name="price1" placeholder="Від:"/>
+                                    <input class="form-control" name="price2" placeholder="до:"/>
                                 </label>
                             </div>
 
                             <div class="section section__apartment_rooms">
                                 <label><span class="l_title">Кількість кімнат</span>
                                     <label><input type="checkbox" name="all" checked> Всі</label>
-                                    <label><input type="checkbox" name="one"> Одна</label>
-                                    <label><input type="checkbox" name="two"> Дві</label>
-                                    <label><input type="checkbox" name="three"> Три</label>
-                                    <label><input type="checkbox" name="four"> Чотири</label>
-                                    <label><input type="checkbox" name="five"> П'ять</label>
+                                    <label><input type="checkbox" name="r1"> Одна</label>
+                                    <label><input type="checkbox" name="r2"> Дві</label>
+                                    <label><input type="checkbox" name="r3"> Три</label>
+                                    <label><input type="checkbox" name="r4"> Чотири</label>
+                                    <label><input type="checkbox" name="r5"> П'ять</label>
                                 </label>
                             </div>
 
@@ -149,7 +149,7 @@
                         </form>
                     </div>
 
-                    <div class="filters rooms">
+                    <div class="filters rooms filters_hide">
                         <div class="title">Фільтри з оренди кімнат</div>
                         <form class="form-control" action="#">
 
@@ -189,21 +189,10 @@
 
                             <div class="section">
                                 <label><span class="l_title">Ціна</span>
-                                    <input class="form-control" name="rooms__price_from" placeholder="Від:"/>
-                                    <input class="form-control" name="rooms__price_to" placeholder="до:"/>
+                                    <input class="form-control" name="price1" placeholder="Від:"/>
+                                    <input class="form-control" name="price2" placeholder="до:"/>
                                 </label>
                             </div>
-
-                            {{--<div class="section section__rooms_rooms">
-                                <label><span class="l_title">Кількість кімнат</span>
-                                    <label><input type="checkbox" checked> Всі</label>
-                                    <label><input type="checkbox"> Одна</label>
-                                    <label><input type="checkbox"> Дві</label>
-                                    <label><input type="checkbox"> Три</label>
-                                    <label><input type="checkbox"> Чотири</label>
-                                    <label><input type="checkbox"> П'ять</label>
-                                </label>
-                            </div>--}}
 
                             <div class="buttons">
                                 <div class="btn btn-outline-success submit">Зберегти</div>

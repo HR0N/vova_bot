@@ -11,9 +11,14 @@ class TgGroups extends Model
     use HasFactory;
 
     protected $fillable = [
+        'rent_type',
         'group_title',
         'group_id',
         'allow_messages',
         'city',
+        'district',
+        'price',
+        'rooms',
+        'request_url',
     ];
 }

@@ -49,11 +49,8 @@ class ParsingClass {
         $rooms5 = '&search[filter_enum_number_of_rooms_string][4]=pyatikomnatnye';
         $url_apartment_rent = "https://www.olx.ua/d/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/$city?";
         $url_room_rent = "https://www.olx.ua/d/uk/nedvizhimost/komnaty/dolgosrochnaya-arenda-komnat/$city?";
-        $url = $url_apartment_rent;
+        $url = $url_apartment_rent.$rooms1.$rooms3;
         $sSelector = 'div.listing-grid-container';
         echo file_get_contents($url);
-        /*echo '<pre>';
-        echo var_dump($this->getParsed($url, $sSelector));
-        echo '</pre>';*/
     }
 }
