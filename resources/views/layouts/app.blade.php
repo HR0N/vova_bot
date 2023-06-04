@@ -21,8 +21,8 @@
     <?php if($_SERVER['SERVER_NAME'] === '127.0.0.1'): ?>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <?php else: ?>
-    <link rel="stylesheet" href="{{asset('./public/build/assets/app-6848dc19.css')}}">
-    <script src="{{asset('./public/build/assets/app-58c5dbe6.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('./public/build/assets/app-85b5c93e.css')}}">
+    <script src="{{asset('./public/build/assets/app-ba5f3771.js')}}"></script>
     <?php endif; ?>
 </head>
 <body>
@@ -32,9 +32,13 @@
                 <div class="welcome">
                     <a href="{{ url('/') }}" class="welcome font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Welcome</a>
                 </div>
-                <div class="welcome">
-                    <a href="{{ url('/adminpanel') }}" class="welcome font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">A Panel</a>
-                </div>
+                @auth()
+                    @if(Auth()->user()->role == 'admin')
+                        <div class="welcome">
+                            <a href="{{ url('/adminpanel') }}" class="welcome font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">A Panel</a>
+                        </div>
+                    @endif
+                @endauth
                 <div class="links">
                     @auth
                         <div aria-labelledby="navbarDropdown">

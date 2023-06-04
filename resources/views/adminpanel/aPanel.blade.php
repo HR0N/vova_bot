@@ -22,8 +22,8 @@
     <?php if($_SERVER['SERVER_NAME'] === '127.0.0.1'): ?>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <?php else: ?>
-    <link rel="stylesheet" href="{{asset('./public/build/assets/app-6848dc19.css')}}">
-    <script src="{{asset('./public/build/assets/app-58c5dbe6.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('./public/build/assets/app-85b5c93e.css')}}">
+    <script src="{{asset('./public/build/assets/app-ba5f3771.js')}}"></script>
     <?php endif; ?>
 
 </head>
@@ -138,7 +138,7 @@
                                     <label><input type="checkbox" name="r2"> Дві</label>
                                     <label><input type="checkbox" name="r3"> Три</label>
                                     <label><input type="checkbox" name="r4"> Чотири</label>
-                                    <label><input type="checkbox" name="r5"> П'ять</label>
+{{--                                    <label><input type="checkbox" name="r5"> П'ять</label>--}}
                                 </label>
                             </div>
 
@@ -155,7 +155,7 @@
 
                             <div class="section">
                                 <label><span class="l_title">Город</span>
-                                    <select class="form-control" name="apartment__city">
+                                    <select class="form-control" name="rooms__city">
                                         {{--                                        <option selected disabled></option>--}}
                                         <option value="Warszawa">Warszawa</option>
                                     </select>
@@ -164,25 +164,25 @@
 
                             <div class="section">
                                 <label><span class="l_title">Район</span>
-                                    <select class="form-control" name="apartment__district">
-                                        <option value="Bemowo">Bemowo</option>
-                                        <option value="Białołęka">Białołęka</option>
-                                        <option value="Bielany">Bielany</option>
-                                        <option value="Mokotów">Mokotów</option>
-                                        <option value="Ochota">Ochota</option>
-                                        <option value="Praga-Południe">Praga-Południe</option>
-                                        <option value="Praga-Północ">Praga-Północ</option>
-                                        <option value="Rembertów">Rembertów</option>
-                                        <option value="Targówek">Targówek</option>
-                                        <option value="Ursus">Ursus</option>
-                                        <option value="Ursynów">Ursynów</option>
-                                        <option value="Wola">Wola</option>
-                                        <option value="Wesoła">Wesoła</option>
-                                        <option value="Włochy">Włochy</option>
-                                        <option value="Wilanów">Wilanów</option>
-                                        <option value="Wawer">Wawer</option>
-                                        <option value="Śródmieście">Śródmieście</option>
-                                        <option value="Żoliborz">Żoliborz</option>
+                                    <select class="form-control" name="rooms__district">
+                                        <option value="367">Bemowo</option>
+                                        <option value="365">Białołęka</option>
+                                        <option value="369">Bielany</option>
+                                        <option value="353">Mokotów</option>
+                                        <option value="355">Ochota</option>
+                                        <option value="381">Praga-Południe</option>
+                                        <option value="379">Praga-Północ</option>
+                                        <option value="361">Rembertów</option>
+                                        <option value="377">Targówek</option>
+                                        <option value="371">Ursus</option>
+                                        <option value="373">Ursynów</option>
+                                        <option value="359">Wola</option>
+                                        <option value="533">Wesoła</option>
+                                        <option value="357">Włochy</option>
+                                        <option value="375">Wilanów</option>
+                                        <option value="383">Wawer</option>
+                                        <option value="351">Śródmieście</option>
+                                        <option value="363">Żoliborz</option>
                                     </select>
                                 </label>
                             </div>
@@ -199,6 +199,9 @@
                             </div>
 
                         </form>
+                    </div>
+                    <div class="modal_update filters_hide">
+                        <div class="message">Збережено!</div>
                     </div>
 
                 </main>

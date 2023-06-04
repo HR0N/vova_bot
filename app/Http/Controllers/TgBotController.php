@@ -83,6 +83,6 @@ class TgBotController extends Controller
     public function test()
     {
         $pq = new ParsingClass();
-        $pq->apartment_rent();
+        $pq->parse();
     }
 }

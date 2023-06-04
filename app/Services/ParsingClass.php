@@ -8,7 +8,7 @@ namespace App\Services;
 use App\Models\TgGroups;
 use Telegram\Bot\Exceptions\TelegramResponseException;
 use Telegram\Bot\Exceptions\TelegramSDKException;
-use PhpQuery\PhpQuery;
+require_once __DIR__ . './../../app/parsing/phpQuery-0.9.5.386-onefile/phpQuery-onefile.php';
 
 class ParsingClass {
 
@@ -19,8 +19,7 @@ class ParsingClass {
 
     public function __construct()
     {
-        /*  composer require phpquery/phpquery - https://packagist.org/packages/phpquery/phpquery */
-        $this->pq = new phpQuery;
+        $this->pq = \phpQuery::class;
     }
 
     public function getParsed($url, $sSelector){
@@ -29,28 +28,24 @@ class ParsingClass {
         return $this->pq->query($sSelector)[0]->textContent;
     }
 
-    public function apartment_rent(){
-        $city = 'kiev/';
-        $district = '&search[district_id]=';
-        $price1 = '&search[filter_float_price:from]=';
-        $price2 = '&search[filter_float_price:to]=';
-        $floor1 = '&search[filter_float_floor:from]=';
-        $floor2 = '&search[filter_float_floor:to]=';
-        $total_area1 = '&search[filter_float_total_area:from]=';
-        $total_area2 = '&search[filter_float_total_area:to]=';
-        $kitchen1 = '&search[filter_float_kitchen_area:from]=';
-        $kitchen2 = '&search[filter_float_kitchen_area:to]=';
-        $furnish1 = '&search[filter_enum_furnish][0]=yes';
-        $furnish2 = '&search[filter_enum_furnish][1]=no';
-        $rooms1 = '&search[filter_enum_number_of_rooms_string][0]=odnokomnatnye';
-        $rooms2 = '&search[filter_enum_number_of_rooms_string][1]=dvuhkomnatnye';
-        $rooms3 = '&search[filter_enum_number_of_rooms_string][2]=trehkomnatnye';
-        $rooms4 = '&search[filter_enum_number_of_rooms_string][3]=chetyrehkomnatnye';
-        $rooms5 = '&search[filter_enum_number_of_rooms_string][4]=pyatikomnatnye';
-        $url_apartment_rent = "https://www.olx.ua/d/uk/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/$city?";
-        $url_room_rent = "https://www.olx.ua/d/uk/nedvizhimost/komnaty/dolgosrochnaya-arenda-komnat/$city?";
-        $url = $url_apartment_rent.$rooms1.$rooms3;
-        $sSelector = 'div.listing-grid-container';
-        echo file_get_contents($url);
+    public function parse(){
+        $sSelector1 = 'div.listing-grid-container';
+        $groups = TgGroups::all();
+        $count = 1;
+        foreach ($groups as $group){
+            $url = file_get_contents($group->request_url);
+            $doc = \phpQuery::newDocument($url);
+            $orders =  $doc->find($sSelector1)->find('div.css-1sw7q4x');
+            foreach ($orders as $key => $val){
+                $count++;
+                echo '<pre>';
+                echo pq($val)->find('h6.css-16v5mdi.er34gjf0')->text();
+                echo '</br>'.explode('.css', pq($val)->find('p.css-10b0gli.er34gjf0')->text())[0];
+                echo '</br>--------------------------------------------------------------------------------------------</br>';
+                echo '</pre>';
+//                \phpQuery::unloadDocuments();
+            }
+        }
+        echo '</br>'.$count;
     }
 }
