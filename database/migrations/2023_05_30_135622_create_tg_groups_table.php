@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('price')->nullable();
             $table->string('rooms')->nullable();
             $table->mediumText('request_url')->nullable();
+            $table->mediumText('ads')->nullable();
             $table->timestamps();
         });
     }

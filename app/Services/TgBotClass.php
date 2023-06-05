@@ -24,7 +24,7 @@ class TgBotClass {
     {
         /*  tg bot sdk get started - https://telegram-bot-sdk.com/docs/getting-started/installation */
         $this->bot = Telegram::bot('olx_bot');
-        $this->bot_id = env('TELEGRAM_BOT_ID');   // відстежуваний id. для того, щоб бот розумів що це його додали або видалили з групи\каналу
+        $this->bot_id = env('TELEGRAM_BOT_ID');   // відстежуваний id. для того, щоб бот розумів що це його додали або видалили з групи\̶к̶а̶н̶а̶л̶у̶
     }
 
 

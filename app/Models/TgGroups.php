@@ -20,5 +20,6 @@ class TgGroups extends Model
         'price',
         'rooms',
         'request_url',
+        'ads',
     ];
 }

@@ -27,20 +27,22 @@ class TgBotController extends Controller
         hook info - https://api.telegram.org/bot<your_token>/getWebhookInfo
         set webhook - https://api.telegram.org/bot{token}/setWebhook
         custom set webhook / bot stopped - https://api.telegram.org/bot<your_token>/setWebHook?url=<hook_url>&allowed_updates=["callback_query","message"]
-        to remove webhook - https://api.telegram.org/bot{token}/setWebhook?remove
+        to remove webhook - https://api.telegram.org/bot<token>/setWebhook?remove
         getWebHookUpdates - https://api.telegram.org/bot<bot token>/getUpdates
         основной пункт - сказать волшебное слово
     */
     public function bot_hook()
     {
         $botClass = new TgBotClass();
+        $bot = Telegram::bot('olx_bot');
         $updates = $botClass->getUpdates()->getMessage();
+
 
         $chat_id = $updates->chat->id;
         $bot_added = $botClass->bot_add($updates) ? "success" : 'error';
         $bot_kicked = $botClass->bot_kick($updates) ? "success" : 'error';
 
-        $botClass->sendMessage(env('TELEGRAM_GROUP_ID'), 'test');
+        $botClass->sendMessage(env('TELEGRAM_GROUP_ID'), strval($updates));
     }
 
     /**
@@ -50,7 +52,7 @@ class TgBotController extends Controller
     {
         $botClass = new TgBotClass();
 
-        $botClass->sendMessage(env('TELEGRAM_GROUP_ID'), 'test');
+        $botClass->sendMessage(env('TELEGRAM_GROUP_ID'), 'test send router');
     }
 
     /**
