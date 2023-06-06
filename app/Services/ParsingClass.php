@@ -42,7 +42,7 @@ class ParsingClass {
 
     public function add_ad($group, $new_ad){
         array_unshift($this->old_ads, $new_ad);   // add to begin
-        if(count($this->old_ads) > 50){
+        if(count($this->old_ads) > 400){
             array_pop($this->old_ads);            // remove from end
         }
 
@@ -52,8 +52,10 @@ class ParsingClass {
         $inline_keyboard = json_encode($reply_markup);
         unset($inline);
 
-        $message = "🏚️ <b>$new_ad[1]</b> \n\n$new_ad[2] \n<a href='$new_ad[5]'>$new_ad[3]</a>";
-        $this->botClass->sendMessage($group->group_id, $message);
+        if(strlen($new_ad[1]) > 0){
+            $message = "🏚️ <b>$new_ad[1]</b> \n\n$new_ad[2] \n<a href='$new_ad[5]'>$new_ad[3]</a>";
+            $this->botClass->sendMessage($group->group_id, $message);
+        }
         echo $new_ad[1].'<br>';
     }
 
@@ -69,6 +71,7 @@ class ParsingClass {
             $orders =  $doc->find($sSelector1)->find('div.css-1sw7q4x');
             $this->old_ads = json_decode($group->ads);
 //            $result = [];
+            echo 'start<br>';
             foreach ($orders as $key => $val){
                 $count++;
                 $title = pq($val)->find('h6.css-16v5mdi.er34gjf0')->text();
@@ -76,13 +79,14 @@ class ParsingClass {
                 $check = $title.' - '.$price;
                 $date = pq($val)->find('p.css-veheph.er34gjf0')->text();
                 $area = pq($val)->find('span.css-643j0o')->text();
-                $link = "https://www.olx.pl".pq($val)->find('a.css-rc5s2u')->attr('href');
+                $link = pq($val)->find('a.css-rc5s2u')->attr('href');
+                if(!str_contains($link, 'otodom.pl')){$link = "https://www.olx.pl".$link;}
                 $array = [$check, $title, $price, $date, $area, $link];
 
                 $this->check_ad($group, $array);
 
                 sleep(.2);
-                if($count > 20){break;}
+//                if($count > 20){break;}
             }
             \phpQuery::unloadDocuments();
 

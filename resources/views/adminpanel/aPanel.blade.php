@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>OLX Message Bot</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -22,8 +21,8 @@
     <?php if($_SERVER['SERVER_NAME'] === '127.0.0.1'): ?>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <?php else: ?>
-    <link rel="stylesheet" href="{{asset('./public/build/assets/app-85b5c93e.css')}}">
-    <script src="{{asset('./public/build/assets/app-ba5f3771.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('./public/build/assets/app-3aaac750.css')}}">
+    <script src="{{asset('./public/build/assets/app-799273ba.js')}}"></script>
     <?php endif; ?>
 
 </head>
@@ -102,6 +101,7 @@
                             <div class="section">
                                 <label><span class="l_title">Район</span>
                                     <select class="form-control" name="apartment__district">
+                                        <option value="0">Całe miasto</option>
                                         <option value="367">Bemowo</option>
                                         <option value="365">Białołęka</option>
                                         <option value="369">Bielany</option>
@@ -165,6 +165,7 @@
                             <div class="section">
                                 <label><span class="l_title">Район</span>
                                     <select class="form-control" name="rooms__district">
+                                        <option value="0">Całe miasto</option>
                                         <option value="367">Bemowo</option>
                                         <option value="365">Białołęka</option>
                                         <option value="369">Bielany</option>

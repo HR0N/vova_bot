@@ -175,13 +175,13 @@ class Processing extends AdminPanelInit{
             'district': `${form_data.rooms__district}`,
             'price': JSON.stringify([form_data.price1, form_data.price2]),
             'rooms': '',
-            'request_url': this.that.request_urls.rent_rooms+`${this.that.request_urls.district}${form_data.rooms__district}`
+            'request_url': this.that.request_urls.rent_rooms+`${+form_data.rooms__district !== 0 ? this.that.request_urls.district:''}${+form_data.rooms__district !== 0 ?form_data.rooms__district:''}`
                 +`${form_data.price1 && this.that.request_urls.price1}${form_data.price1}${form_data.price2 && this.that.request_urls.price2}${form_data.price2}`
                 +`${form_data.r1 ? this.that.request_urls.rooms1:''}${form_data.r2 ? this.that.request_urls.rooms2:''}${form_data.r3 ? this.that.request_urls.rooms3:''}${form_data.r4 ? this.that.request_urls.rooms4:''}${form_data.r5 ? this.that.request_urls.rooms5:''}`,
         };
 
         const url = `${location.origin}/TgGroupsUpdate/${this.that.groups.val()}`;
-        this.that.server.update_group_data(url, data);
+        this.that.server.update_group_data(url, data, this.show_message.bind(this));
 
     }
 

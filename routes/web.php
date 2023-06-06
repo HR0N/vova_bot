@@ -28,6 +28,7 @@ Route::post('/TgGroupsUpdate/{id}', [TgGroupsController::class, 'update']);
 
 Route::get('/send', [TgBotController::class, 'store']);
 Route::get('/test', [TgBotController::class, 'test']);
+Route::get('/olx_parse1', [TgBotController::class, 'olx_parse1']);
 
 Auth::routes();
 

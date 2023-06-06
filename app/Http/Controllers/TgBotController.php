@@ -42,7 +42,7 @@ class TgBotController extends Controller
         $bot_added = $botClass->bot_add($updates) ? "success" : 'error';
         $bot_kicked = $botClass->bot_kick($updates) ? "success" : 'error';
 
-        $botClass->sendMessage(env('TELEGRAM_GROUP_ID'), strval($updates));
+//        $botClass->sendMessage(env('TELEGRAM_GROUP_ID'), strval($updates));
     }
 
     /**
@@ -83,6 +83,15 @@ class TgBotController extends Controller
      * Remove the specified resource from storage.
      */
     public function test()
+    {
+        $pq = new ParsingClass();
+        $pq->parse();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function olx_parse1()
     {
         $pq = new ParsingClass();
         $pq->parse();
