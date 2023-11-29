@@ -79,7 +79,7 @@ class TgBotController extends Controller
         if (strpos($text, 'Rembertów') !== false || strpos($text, 'Rembertow') !== false) {
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_REMBERTOW'), $chat_id, $message_id);
         }
-        if (strpos($text, 'Targówek') !== false || strpos($text, 'Targowec') !== false) {
+        if (strpos($text, 'Targówek') !== false || strpos($text, 'Targowek') !== false) {
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_TARGOWEK'), $chat_id, $message_id);
         }
         if (strpos($text, 'Ursus') !== false || strpos($text, 'Ursus') !== false) {
@@ -111,7 +111,7 @@ class TgBotController extends Controller
         }
 
 
-        if (strpos(strtolower($text), 'ad-content') !== false) {
+        if (strpos(strtolower($text), 'ad-content') !== false && strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT')) {
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BEMOWO'), $chat_id, $message_id);
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BIALOLEKA'), $chat_id, $message_id);
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BIELANY'), $chat_id, $message_id);
@@ -131,7 +131,7 @@ class TgBotController extends Controller
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_SRODMIESCIE'), $chat_id, $message_id);
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_ZOLIBORZ'), $chat_id, $message_id);
         }
-        if (strpos(strtolower($text), 'ma-content') !== false) {
+        if (strpos(strtolower($text), 'ma-content') !== false && strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT')) {
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BEMOWO'), $chat_id, $message_id);
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BIALOLEKA'), $chat_id, $message_id);
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BIELANY'), $chat_id, $message_id);
@@ -149,6 +149,61 @@ class TgBotController extends Controller
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_WILANOW'), $chat_id, $message_id);
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_WAWER'), $chat_id, $message_id);
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_SRODMIESCIE'), $chat_id, $message_id);
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_ZOLIBORZ'), $chat_id, $message_id);
+        }
+
+        if (strpos(strtolower($text), 'bemowo-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BEMOWO'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'bialolelka-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BIALOLEKA'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'bielany-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_BIELANY'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'mokotow-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_MOKOTOW'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'ochota-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_OCHOTA'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'poludnie-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_PRAGA_POLUDNIE'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'polnoc-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_PRAGA_POLNOC'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'rembertow-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_REMBERTOW'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'targowek-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_TARGOWEK'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'ursus-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_URSUS'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'ursynow-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_URSYNOW'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'wola-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_WOLA'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'wesola-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_WESOLA'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'wlochy-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_WLOCHY'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'wilanow-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_WILANOW'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'wawer-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_WAWER'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'srodmiescie-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
+            $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_SRODMIESCIE'), $chat_id, $message_id);
+        }
+        if (strpos(strtolower($text), 'zoliborz-cl') !== false && (strval($chat_id) === env('TELEGRAM_GROUP_ID_AD_CONTENT') || strval($chat_id) === env('TELEGRAM_GROUP_ID_MA_CONTENT'))) {
             $botClass->forwardMessage(env('TELEGRAM_GROUP_ID_ZOLIBORZ'), $chat_id, $message_id);
         }
 
