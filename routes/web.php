@@ -21,12 +21,12 @@ Route::get('/', function () {
 });
 Route::get('/adminpanel', function (){return view('adminpanel/aPanel');});
 Route::post('/bot_hook', [TgBotController::class, 'bot_hook']);
+Route::post('/bot_hook2', [TgBotController::class, 'bot_hook2']);
 
 Route::get('/TgGroupsIndex', [TgGroupsController::class, 'index']);
 Route::post('/TgGroupsUpdate/{id}', [TgGroupsController::class, 'update']);
 
 
-Route::get('/send', [TgBotController::class, 'store']);
 Route::get('/test', [TgBotController::class, 'test']);
 Route::get('/olx_parse1', [TgBotController::class, 'olx_parse1']);
 

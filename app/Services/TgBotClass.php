@@ -82,4 +82,13 @@ class TgBotClass {
             //continue;
         }
     }
+
+    public function forwardMessage($chat_id, $from_chat_id, $message_id){
+        try {
+            $this->bot->forwardMessage(['chat_id' => $chat_id, 'from_chat_id' => $from_chat_id, 'message_id' => $message_id,
+                'parse_mode' => 'HTML']);
+        } catch (TelegramResponseException $exception) {    // TelegramResponseException must be imported
+            //continue;
+        }
+    }
 }

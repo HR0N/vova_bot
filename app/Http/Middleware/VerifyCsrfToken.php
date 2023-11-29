@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/bot_hook',
+        '/bot_hook2',
     ];
 }

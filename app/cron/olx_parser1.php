@@ -1,6 +1,6 @@
 <?php
 
-$url = "https://olx.evilcode.space/olx_parse1";
+$url = "https://olx.plc-department.space/olx_parse1";
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
