@@ -33,8 +33,15 @@ class ParsingClass {
     }
 
     public function check_ad($group, $new_ad){
+        echo "CHECK THIS SHIT";
         if(str_contains(json_encode($this->old_ads), json_encode($new_ad[0]))){
             $vnikuda = 'nu ok =\<br>';
+            echo '<pre>';
+            echo var_dump($new_ad[1]).'</br>';
+            echo var_dump($new_ad[2]).'</br>';
+            echo var_dump($new_ad[5]).'</br>';
+            echo var_dump($new_ad[3]).'</br>';
+            echo '</pre>';
         }else{
             $this->add_ad($group, $new_ad);
         }
@@ -77,8 +84,10 @@ class ParsingClass {
                 $title = pq($val)->find('h6.css-16v5mdi.er34gjf0')->text();
                 $price = str_replace('do negocjacji', ' - do negocjacji', explode('.css', pq($val)->find('p.css-10b0gli.er34gjf0')->text())[0]);
                 $check = $title.' - '.$price;
-                $date = pq($val)->find('p.css-veheph.er34gjf0')->text();
+//                $date = pq($val)->find('p.css-veheph.er34gjf0')->text();
+                $date = pq($val)->find('p.css-1a4brun')->text();
                 $area = pq($val)->find('span.css-643j0o')->text();
+//                $link = pq($val)->find('a.css-rc5s2u')->attr('href');
                 $link = pq($val)->find('a.css-rc5s2u')->attr('href');
                 if(!str_contains($link, 'otodom.pl')){$link = "https://www.olx.pl".$link;}
                 $array = [$check, $title, $price, $date, $area, $link];
