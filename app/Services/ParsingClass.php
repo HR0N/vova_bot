@@ -88,7 +88,7 @@ class ParsingClass {
                 $date = pq($val)->find('p.css-1a4brun')->text();
                 $area = pq($val)->find('span.css-643j0o')->text();
 //                $link = pq($val)->find('a.css-rc5s2u')->attr('href');
-                $link = pq($val)->find('a.css-q0eq4')->attr('href');
+                $link = pq($val)->find('div.css-u2ayx9 a')->attr('href');
                 if(!str_contains($link, 'otodom.pl')){$link = "https://www.olx.pl".$link;}
                 $array = [$check, $title, $price, $date, $area, $link];
 
