@@ -83,7 +83,7 @@ class ParsingClass {
                 $count++;
                 $title = pq($val)->find('h6.css-16v5mdi.er34gjf0')->text();
 //                $price = str_replace('do negocjacji', ' - do negocjacji', explode('.css', pq($val)->find('p.css-tyui9s.er34gjf0')->text())[0]);
-                $price = pq($val)->find('p[data-testid="ad-price"]')->text();
+                $price = explode(' zł', pq($val)->find('p[data-testid="ad-price"]')->text())[0] .' zł';
                 $check = $title.' - '.$price;
 //                $date = pq($val)->find('p.css-veheph.er34gjf0')->text();
                 $date = pq($val)->find('p.css-1a4brun')->text();
