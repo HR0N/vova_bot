@@ -33,10 +33,11 @@ class ParsingClass {
     }
 
     public function check_ad($group, $new_ad){
-        echo "CHECK THIS SHIT";
         if(str_contains(json_encode($this->old_ads), json_encode($new_ad[0]))){
+            echo "<br><br>CHECK THIS ITERATION";
             $vnikuda = 'nu ok =\<br>';
             echo '<pre>';
+//            echo var_dump($new_ad).'</br>';
             echo var_dump($new_ad[1]).'</br>';
             echo var_dump($new_ad[2]).'</br>';
             echo var_dump($new_ad[5]).'</br>';
@@ -61,9 +62,9 @@ class ParsingClass {
 
         if(strlen($new_ad[1]) > 0){
             $message = "🏚️ <b>$new_ad[1]</b> \n\n$new_ad[2] \n<a href='$new_ad[5]'>$new_ad[3]</a>";
-            $this->botClass->sendMessage($group->group_id, $message);
+//            $this->botClass->sendMessage($group->group_id, $message); //todo remove
         }
-        echo $new_ad[1].'<br>';
+//        echo $new_ad[1].'<br>';
     }
 
     public function parse(){
@@ -71,22 +72,24 @@ class ParsingClass {
         $groups = TgGroups::all();
         $count = 1;
 
+        echo 'start<br>';
+
 
         foreach ($groups as $group){
+//            echo "$group->request_url".'<br>';
             $url = file_get_contents($group->request_url);
             $doc = \phpQuery::newDocument($url);
             $orders =  $doc->find($sSelector1)->find('div.css-1sw7q4x');
             $this->old_ads = json_decode($group->ads);
 //            $result = [];
-            echo 'start<br>';
             foreach ($orders as $key => $val){
                 $count++;
-                $title = pq($val)->find('h6.css-16v5mdi.er34gjf0')->text();
+                $title = pq($val)->find('a.css-z3gu2d h6.css-1wxaaza')->text();
 //                $price = str_replace('do negocjacji', ' - do negocjacji', explode('.css', pq($val)->find('p.css-tyui9s.er34gjf0')->text())[0]);
                 $price = explode(' zł', pq($val)->find('p[data-testid="ad-price"]')->text())[0] .' zł';
                 $check = $title.' - '.$price;
 //                $date = pq($val)->find('p.css-veheph.er34gjf0')->text();
-                $date = pq($val)->find('p.css-1a4brun')->text();
+                $date = pq($val)->find('p.css-1mwdrlh')->text();
                 $area = pq($val)->find('span.css-643j0o')->text();
 //                $link = pq($val)->find('a.css-rc5s2u')->attr('href');
                 $link = pq($val)->find('div.css-u2ayx9 a')->attr('href');
@@ -96,18 +99,18 @@ class ParsingClass {
                 $this->check_ad($group, $array);
 
                 sleep(.2);
-//                if($count > 20){break;}
+                if($count > 2){break;}
             }
             \phpQuery::unloadDocuments();
 
 
             $data['ads'] = json_encode($this->old_ads);
 
-            $base = TgGroups::find($group->id);
-            $res = $base->update($data);
-            echo '<pre>';
-            echo var_dump($res);
-            echo '</pre>';
+//            $base = TgGroups::find($group->id);           todo: remove
+//            $res = $base->update($data);          todo: remove
+//            echo '<pre>';         todo: remove
+//            echo var_dump($res);          todo: remove
+//            echo '</pre>';            todo: remove
         }
     }
 }
