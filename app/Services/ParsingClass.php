@@ -62,7 +62,7 @@ class ParsingClass {
 
         if(strlen($new_ad[1]) > 0){
             $message = "🏚️ <b>$new_ad[1]</b> \n\n$new_ad[2] \n<a href='$new_ad[5]'>$new_ad[3]</a>";
-//            $this->botClass->sendMessage($group->group_id, $message); //todo remove
+            $this->botClass->sendMessage($group->group_id, $message); //todo ОТПРАВКА СООБЩЕНИЙ
         }
 //        echo $new_ad[1].'<br>';
     }
@@ -96,18 +96,18 @@ class ParsingClass {
                 if(!str_contains($link, 'otodom.pl')){$link = "https://www.olx.pl".$link;}
                 $array = [$check, $title, $price, $date, $area, $link];
 
-                $this->check_ad($group, $array);
+                $this->check_ad($group, $array);    // todo ДЛЯ ТЕСТА
 
                 sleep(.2);
-                if($count > 2){break;}
+//                if($count > 2){break;}  // todo ДЛЯ ТЕСТА
             }
             \phpQuery::unloadDocuments();
 
 
             $data['ads'] = json_encode($this->old_ads);
 
-//            $base = TgGroups::find($group->id);           todo: remove
-//            $res = $base->update($data);          todo: remove
+            $base = TgGroups::find($group->id);
+            $res = $base->update($data);    //  todo СОХРАНЕНИЕ ДАННЫХ
 //            echo '<pre>';         todo: remove
 //            echo var_dump($res);          todo: remove
 //            echo '</pre>';            todo: remove
