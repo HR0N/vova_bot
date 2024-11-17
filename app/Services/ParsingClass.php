@@ -34,14 +34,17 @@ class ParsingClass {
 
     public function check_ad($group, $new_ad){
         if(str_contains(json_encode($this->old_ads), json_encode($new_ad[0]))){
+            echo '<pre>';
+            echo var_dump($group->request_url);
+            echo '</pre>';
             echo "<br><br>CHECK THIS ITERATION";
             $vnikuda = 'nu ok =\<br>';
             echo '<pre>';
 //            echo var_dump($new_ad).'</br>';
-            echo var_dump($new_ad[1]).'</br>';
-            echo var_dump($new_ad[2]).'</br>';
-            echo var_dump($new_ad[5]).'</br>';
-            echo var_dump($new_ad[3]).'</br>';
+            echo var_dump('title: ' .$new_ad[1]).'</br>';
+            echo var_dump('price: ' .$new_ad[2]).'</br>';
+            echo var_dump('link: '  .$new_ad[5]).'</br>';
+            echo var_dump('date: '  .$new_ad[3]).'</br>';
             echo '</pre>';
         }else{
             $this->add_ad($group, $new_ad);
@@ -79,12 +82,12 @@ class ParsingClass {
 //            echo "$group->request_url".'<br>';
             $url = file_get_contents($group->request_url);
             $doc = \phpQuery::newDocument($url);
-            $orders =  $doc->find($sSelector1)->find('div.css-1sw7q4x');
+            $orders =  $doc->find($sSelector1)->find('div.css-qfzx1y');
             $this->old_ads = json_decode($group->ads);
 //            $result = [];
             foreach ($orders as $key => $val){
                 $count++;
-                $title = pq($val)->find('a.css-z3gu2d h6.css-1wxaaza')->text();
+                $title = pq($val)->find('a.css-qo0cxu h6.css-1wxaaza')->text();
 //                $price = str_replace('do negocjacji', ' - do negocjacji', explode('.css', pq($val)->find('p.css-tyui9s.er34gjf0')->text())[0]);
                 $price = explode(' zł', pq($val)->find('p[data-testid="ad-price"]')->text())[0] .' zł';
                 $check = $title.' - '.$price;
