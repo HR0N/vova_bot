@@ -247,6 +247,7 @@ class TgBotController extends Controller
     {
         $pq = new ParsingClass();
         $pq->parse();
+//        $pq->check_end_send_error_notice2('sdfsdf');
     }
 
     /**

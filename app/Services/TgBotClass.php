@@ -91,4 +91,12 @@ class TgBotClass {
             //continue;
         }
     }
+
+    public function sendErrorNotice($message){
+        try {
+            $this->bot->sendMessage(['chat_id' => env('TELEGRAM_GROUP_ID_ERRORS'), 'text' => $message, 'parse_mode' => 'HTML']);
+        } catch (TelegramResponseException $exception) {    // TelegramResponseException must be imported
+            //continue;
+        }
+    }
 }

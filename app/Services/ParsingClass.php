@@ -5,6 +5,7 @@
 namespace App\Services;
 
 
+use App\Models\ErrorsCheck;
 use App\Models\TgGroups;
 use Telegram\Bot\Exceptions\TelegramResponseException;
 use Telegram\Bot\Exceptions\TelegramSDKException;
@@ -87,7 +88,7 @@ class ParsingClass {
 //            $result = [];
             foreach ($orders as $key => $val){
                 $count++;
-                $title = pq($val)->find('a.css-qo0cxu h6.css-1wxaaza')->text();
+                $title = pq($val)->find('a.css-qo0cxu h4.css-1s3qyje')->text();
 //                $price = str_replace('do negocjacji', ' - do negocjacji', explode('.css', pq($val)->find('p.css-tyui9s.er34gjf0')->text())[0]);
                 $price = explode(' zł', pq($val)->find('p[data-testid="ad-price"]')->text())[0] .' zł';
                 $check = $title.' - '.$price;
@@ -99,10 +100,11 @@ class ParsingClass {
                 if(!str_contains($link, 'otodom.pl')){$link = "https://www.olx.pl".$link;}
                 $array = [$check, $title, $price, $date, $area, $link];
 
-                $this->check_ad($group, $array);    // todo ДЛЯ ТЕСТА
+                $this->check_end_send_error_notice($array);
+                $this->check_ad($group, $array);    // ДЛЯ ТЕСТА
 
                 sleep(.2);
-//                if($count > 2){break;}  // todo ДЛЯ ТЕСТА
+//                if($count > 2){break;}  // ДЛЯ ТЕСТА
             }
             \phpQuery::unloadDocuments();
 
@@ -110,10 +112,26 @@ class ParsingClass {
             $data['ads'] = json_encode($this->old_ads);
 
             $base = TgGroups::find($group->id);
-            $res = $base->update($data);    //  todo СОХРАНЕНИЕ ДАННЫХ
-//            echo '<pre>';         todo: remove
-//            echo var_dump($res);          todo: remove
-//            echo '</pre>';            todo: remove
+            $res = $base->update($data);    //  СОХРАНЕНИЕ ДАННЫХ
+//            echo '<pre>';         remove
+//            echo var_dump($res);          remove
+//            echo '</pre>';            remove
         }
+    }
+
+    public function check_end_send_error_notice($data, $message = '⚠️ Another Error in project: vova_bot'){
+        $was_error = ErrorsCheck::first()->was_mistake;
+        if(!strlen($data[1]) > 0 || !strlen($data[2]) > 0 || !strlen($data[3]) > 0 || !strlen($data[5]) > 0){
+            if(!$was_error){
+                ErrorsCheck::first()->update(['was_mistake' => true]);
+                $this->botClass->sendErrorNotice($message);
+            }
+        }else if($was_error){
+            ErrorsCheck::first()->update(['was_mistake' => false]);
+        }
+    }
+    public function check_end_send_error_notice2($message = '⚠️ Another Error in project: vova_bot'){
+        $was_error = ErrorsCheck::first()->was_mistake;
+        $this->botClass->sendErrorNotice(strval($was_error));
     }
 }
