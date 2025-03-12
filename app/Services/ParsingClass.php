@@ -88,7 +88,7 @@ class ParsingClass {
 //            $result = [];
             foreach ($orders as $key => $val){
                 $count++;
-                $title = pq($val)->find('a.css-qo0cxu h4.css-1sq4ur2')->text();
+                $title = pq($val)->find('a.css-qo0cxu h4.css-1g61gc2')->text();
 //                $price = str_replace('do negocjacji', ' - do negocjacji', explode('.css', pq($val)->find('p.css-tyui9s.er34gjf0')->text())[0]);
                 $price = explode(' zł', pq($val)->find('p[data-testid="ad-price"]')->text())[0] .' zł';
                 $check = $title.' - '.$price;
