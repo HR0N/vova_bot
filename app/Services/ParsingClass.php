@@ -19,12 +19,14 @@ class ParsingClass {
     public $botClass;
     public $pq;
     public $old_ads;
+    public $current_path;
 
     public function __construct()
     {
-        $this->botClass = new TgBotClass();
-        $this->pq = \phpQuery::class;
-        $this->old_ads = [];
+        $this->botClass         = new TgBotClass();
+        $this->pq               = \phpQuery::class;
+        $this->old_ads          = [];
+        $this->current_path     = str_contains($_SERVER['REQUEST_URI'], 'test');
     }
 
     public function getParsed($url, $sSelector){
@@ -66,7 +68,9 @@ class ParsingClass {
 
         if(strlen($new_ad[1]) > 0){
             $message = "🏚️ <b>$new_ad[1]</b> \n\n$new_ad[2] \n<a href='$new_ad[5]'>$new_ad[3]</a>";
-            $this->botClass->sendMessage($group->group_id, $message); //todo ОТПРАВКА СООБЩЕНИЙ
+            if(!$this->current_path){    // если роут не тестовый - отправляем на каналы сообщения
+                $this->botClass->sendMessage($group->group_id, $message); //todo ОТПРАВКА СООБЩЕНИЙ
+            }
         }
 //        echo $new_ad[1].'<br>';
     }
@@ -88,7 +92,7 @@ class ParsingClass {
 //            $result = [];
             foreach ($orders as $key => $val){
                 $count++;
-                $title = pq($val)->find('a.css-qo0cxu h4.css-1g61gc2')->text();
+                $title = pq($val)->find('a.css-1tqlkj0 h4.css-1g61gc2')->text();
 //                $price = str_replace('do negocjacji', ' - do negocjacji', explode('.css', pq($val)->find('p.css-tyui9s.er34gjf0')->text())[0]);
                 $price = explode(' zł', pq($val)->find('p[data-testid="ad-price"]')->text())[0] .' zł';
                 $check = $title.' - '.$price;
@@ -119,7 +123,8 @@ class ParsingClass {
         }
     }
 
-    public function check_end_send_error_notice($data, $message = '⚠️ Another Error in project: vova_bot'){
+    public function check_end_send_error_notice($data, $message = "⚠️ Another Error!\nProject: vova_bot"){
+        if($this->current_path) {return;}    // если это тестовый роут - прекращаем работу функции
         $was_error = ErrorsCheck::first()->was_mistake;
         if(!strlen($data[1]) > 0 || !strlen($data[2]) > 0 || !strlen($data[3]) > 0 || !strlen($data[5]) > 0){
             if(!$was_error){
@@ -134,4 +139,9 @@ class ParsingClass {
         $was_error = ErrorsCheck::first()->was_mistake;
         $this->botClass->sendErrorNotice(strval($was_error));
     }
+
+    public function test(){
+        echo $this->current_path;
+    }
+
 }
