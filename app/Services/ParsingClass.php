@@ -97,7 +97,7 @@ class ParsingClass {
                 $price = explode(' zł', pq($val)->find('p[data-testid="ad-price"]')->text())[0] .' zł';
                 $check = $title.' - '.$price;
 //                $date = pq($val)->find('p.css-veheph.er34gjf0')->text();
-                $date = pq($val)->find('p.css-1mwdrlh')->text();
+                $date = pq($val)->find('p.css-vbz67q')->text();
                 $area = pq($val)->find('span.css-643j0o')->text();
 //                $link = pq($val)->find('a.css-rc5s2u')->attr('href');
                 $link = pq($val)->find('div.css-u2ayx9 a')->attr('href');
